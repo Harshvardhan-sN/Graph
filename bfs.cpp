@@ -12,17 +12,17 @@ const int N = 1e7 + 10;
 const ll MOD = 1e7 + 1;
 
 vector<int> bfsOfGraph(int n, vector<vector<int>> &ad) {
-	vector<bool> visited(n, 0);
-	visited[0] = 1;
+	vector<bool> visited(n, 0);         // Visited Array
+	visited[0] = 1;                     // Mark 1st node as visited
 	queue<int> q;
-	q.push(0);
+	q.push(0);                          // Push it in Queue
 	vector<int> bfs;
-	while (!q.empty()) {
+	while (!q.empty()) {                // Take out the nodes one by one till its empty
 		int node = q.front();
 		q.pop();
 		bfs.pb(node);
-		for (auto &it : ad[node]) {
-			if (!visited[it]) {
+		for (auto &it : ad[node]) {     // Check for the neighbors in list
+			if (!visited[it]) {         // If not visited Insert them in queue and mark them as visited
 				visited[it] = 1;
 				q.push(it);
 			}
