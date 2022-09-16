@@ -32,7 +32,8 @@ int numberOfProvinces(vector<vector<int>> &ad, int N) {
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-
+	
+	// Matrix
 	int n;  cin >> n;
 	vector<vector<int>> v1;
 	FOR(i, 0, n) {
