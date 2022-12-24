@@ -40,12 +40,10 @@ vector<vector<int>>nearest(vector<vector<int>>&grid)
 		for (int i = 0; i < 4; i++) {
 			int nRow = R + dx[i];
 			int mCol = C + dy[i];
-			if (nRow >= 0 && mCol >= 0 &&
-                    nRow < n && mCol < m &&
-                        grid[nRow][mCol] == 0 && !vis[nRow][mCol]) {
-                            q1.push({nRow, mCol, V});
-				            vis[nRow][mCol] = 1;
-				            res[nRow][mCol] = V;
+			if (nRow >= 0 && mCol >= 0 && nRow < n && mCol < m && grid[nRow][mCol] == 0 && !vis[nRow][mCol]) {
+                        	q1.push({nRow, mCol, V});
+				vis[nRow][mCol] = 1;
+				res[nRow][mCol] = V;
 			}
 		}
 	}
