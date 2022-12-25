@@ -47,7 +47,7 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> &mat) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			if ((i == 0 || i == n - 1) || (i > 0 and i < n - 1 and (j == 0 || j == m - 1))) {
-				if (mat[i][j] == 'O') {
+				if (!vis[i][j] && mat[i][j] == 'O') {
 					res[i][j] = 'O';
 
 					// -> for bfs
