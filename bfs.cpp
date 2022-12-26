@@ -42,6 +42,7 @@ int main() {
 			cin >> v1[i][j];
 		}
 	}
+
 	vector<int> ans =  bfsOfGraph(e, v1);
 	for (auto &it : ans) {
 		cout << it << " ";
