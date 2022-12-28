@@ -89,6 +89,11 @@ int main() {
 	    }
 	}
     for(auto &it: res)      cout<<it<<" ";
+	/*
+	to detect a cycle in directed graph using topological sort 
+	just check if the topological sort for that graph exsit or not 
+	if it exist then it donot have cycle otherwise yes
+	*/
 
 	return 0;
 }
