@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define ull unsigned long long
+
+#define all(x) x.begin(), x.end()
+#define nl endl
+#define FOR(i, j, n) for (int i = j; i < n; i++)
+#define pb push_back
+
+void dfs(int S, vector<pair<int, int>> adj[], vector<bool> &vis, stack<int> &st) {
+	vis[S] = 1;
+	for (auto &it : adj[S]) {
+		if (!vis[it.first]) {
+			dfs(it.first, adj, vis, st);
+		}
+	}
+	st.push(S);
+}
+
+vector<int> shortestPath(int N, int M, vector<vector<int>> &dag) {
+	vector<pair<int, int>> adj[N];
+	vector<bool> vis(N, 0);
+	stack<int> st;
+	vector<int> path(N, 101);    // initilise with the maximum value of constraints
+	for (auto &it : dag) {
+		int u = it[0], v = it[1], cost = it[2];
+		adj[u].emplace_back(v, cost);
+	}
+	for (int i = 0; i < N; i++) {
+		if (!vis[i])     dfs(i, adj, vis, st);
+	}
+	path[0] = 0;      // set the given source node cost 0
+	while (st.size()) {
+		int top = st.top();
+		st.pop();
+		int currCost = path[top];
+		// check for all adj nodes
+		for (auto &it : adj[top]) {
+			path[it.first] = min(path[it.first], currCost + it.second);
+		}
+	}
+	for (auto &it : path) {
+		if (it == 101)     it = -1;
+	}
+	return path;
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	vector<vector<int>> dag;
+	int N, M;
+
+	// // testCase -> 1
+	N = 6, M = 7;
+	dag.push_back({0, 1, 2});
+	dag.push_back({0, 4, 1});
+	dag.push_back({4, 5, 4});
+	dag.push_back({4, 2, 2});
+	dag.push_back({1, 2, 3});
+	dag.push_back({2, 3, 6});
+	dag.push_back({5, 3, 1});
+
+	// ***********  DFS *********
+	vector<int> res = shortestPath(N, M, dag);
+	for (auto &it : res)  cout << it << " ";
+
+	return 0;
+}
