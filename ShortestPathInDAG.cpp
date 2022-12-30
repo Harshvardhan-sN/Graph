@@ -41,8 +41,8 @@ vector<int> shortestPath(int N, int M, vector<vector<int>> &dag) {
 			path[it.first] = min(path[it.first], currCost + it.second);
 		}
 	}
-	for (auto &it : path) {
-		if (it == 101)     it = -1;
+	for (auto &it : path) {	
+		if (it == 101)     it = -1;	 // if node is not reachable
 	}
 	return path;
 }
