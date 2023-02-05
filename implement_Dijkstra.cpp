@@ -42,6 +42,8 @@ vector<int> DijkstraSet(int V, int S, vector<vector<int>> adj[]) {
         for (auto &it : adj[node]) {
             int newCost = cost + it[1];
             if (newCost < paths[it[0]]) {
+                if(paths[it[0]]!=1e9)
+                        st.erase({paths[it[0]], it[0]});
                 paths[it[0]] = newCost;
                 st.emplace(newCost, it[0]);
             }
