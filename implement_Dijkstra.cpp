@@ -19,10 +19,12 @@ vector<int> DijkstraMinHeap(int V, int S, vector<vector<int>> adj[]) {
         int node = st.top().second;
         st.pop();
         for (auto &it : adj[node]) {
-            int newCost = cost + it[1];
-            if (newCost < paths[it[0]]) {
-                paths[it[0]] = newCost;
-                st.emplace(newCost, it[0]);
+            int GoingToNode = it[0];
+            int OldCost = it[1];
+            int newCost = cost + OldCost;
+            if (newCost < paths[GoingTONode]) {
+                paths[GoingTONode] = newCost;
+                st.emplace(newCost, GoingTONode);
             }
         }
     }
@@ -40,12 +42,14 @@ vector<int> DijkstraSet(int V, int S, vector<vector<int>> adj[]) {
         int node = it->second;
         st.erase(it);
         for (auto &it : adj[node]) {
-            int newCost = cost + it[1];
-            if (newCost < paths[it[0]]) {
-                if(paths[it[0]]!=1e9)
-                        st.erase({paths[it[0]], it[0]});
-                paths[it[0]] = newCost;
-                st.emplace(newCost, it[0]);
+            int GoingToNode = it[0];
+            int OldCost = it[1];
+            int newCost = cost + OldCost;
+            if (newCost < paths[GoingTONode]) {
+                if(paths[GoingTONode]!=1e9)
+                    st.erase({paths[GoingTONode], GoingTONode});
+                paths[GoingTONode] = newCost;
+                st.emplace(newCost, GoingTONode);
             }
         }
     }
